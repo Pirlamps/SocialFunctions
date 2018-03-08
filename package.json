@@ -1,0 +1,11 @@
+{
+  "name": "socialfunctions",
+  "version": "1.0.0",
+  "description": "Project that contains functions to use in techtalks of Social project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "MatheusSambiase",
+  "license": "ISC"
+}
