@@ -9,5 +9,5 @@ const functions = require('firebase-functions');
 exports.duplicatePost = functions.database.ref('/social/post/matheus-1250')
     .onWrite(event => {
         const post = event.data.val();
-        return functions.database.ref('/social/duplicate/').set(post);
+        return event.data.ref.root.child('/social/duplicate/').set(post);
     });
