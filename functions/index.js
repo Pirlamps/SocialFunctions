@@ -8,7 +8,7 @@ admin.initializeApp(config.firebase)
 exports.duplicatePost = functions.database.ref('/social/post/matheus-1250')
     .onWrite(event => {
         const post = event.data.val()
-        
+
         //Get the followers
         return admin.database().ref('social/followers/matheus-1250').once('value')
             .then(snapshot => {
@@ -17,7 +17,7 @@ exports.duplicatePost = functions.database.ref('/social/post/matheus-1250')
 
                 //Transform the Map of keys into a JSON with the data to update.
                 var multiUpdate = {}
-                for(var k in followersMap){
+                for (var k in followersMap) {
                     multiUpdate[k] = post
                 }
                 console.log(multiUpdate)
