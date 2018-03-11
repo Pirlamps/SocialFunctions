@@ -5,12 +5,12 @@ const config = functions.config()
 admin.initializeApp(config.firebase)
 
 //Function that duplicate the current post to all followers
-exports.duplicatePost = functions.database.ref('/social/post/matheus-1250')
+exports.duplicatePost = functions.database.ref('/social/post/{userTag}/public/')
     .onWrite(event => {
         const post = event.data.val()
 
-        //Get the followers
-        return admin.database().ref('social/followers/matheus-1250').once('value')
+        //Get the followers by userTag param
+        return admin.database().ref(`social/followers/${event.params.userTag}`).once('value')
             .then(snapshot => {
                 const followersMap = snapshot.val()
                 console.log(followersMap)
@@ -28,4 +28,3 @@ exports.duplicatePost = functions.database.ref('/social/post/matheus-1250')
                 console.error(error)
             })
     })
-    //TODO: change event Reference to get all users
